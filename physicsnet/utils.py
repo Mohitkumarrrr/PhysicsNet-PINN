@@ -151,3 +151,9 @@ def plot_loss_history(
     else:
         plt.show()
     plt.close(fig)
+
+def normalize_data(data):
+    """Normalize input data to [0,1] range."""
+    min_val = data.min()
+    max_val = data.max()
+    return (data - min_val) / (max_val - min_val + 1e-8)
