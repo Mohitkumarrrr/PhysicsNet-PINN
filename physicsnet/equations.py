@@ -203,3 +203,12 @@ class BurgersEquation:
     def initial_condition(self, X: np.ndarray) -> np.ndarray:
         """IC: u(x, 0) = −sin(π x)."""
         return -np.sin(np.pi * X[:, 0:1])
+
+
+class PoissonEquation:
+    """2D Poisson equation solver."""
+    def __init__(self, source_term=None):
+        self.source_term = source_term
+    def residual(self, x, y, u, u_xx, u_yy):
+        f = self.source_term(x, y) if self.source_term else 0
+        return u_xx + u_yy - f
